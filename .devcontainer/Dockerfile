@@ -1,0 +1,25 @@
+# Use the official Node 20 LTS image as a base
+FROM node:20
+
+# Ensure apt is up to date and install git (so WebStorm's Git support works)
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       git \
+       bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a workspace directory (optional; you can change this to suit your project layout)
+WORKDIR /workspace
+
+# Default to non-root user if you prefer (you can also remove these lines 
+# to run as root). Many examples run as root when developing with JetBrains.
+RUN useradd --uid 1000 --gid 1000 --create-home devuser \
+    && chown -R devuser:devuser /workspace
+
+USER devuser
+
+# Expose a commonly-used port (e.g. for running "npm start" or tests)
+EXPOSE 3000
+
+# When the container starts, drop into a shell by default.
+CMD ["bash"]
