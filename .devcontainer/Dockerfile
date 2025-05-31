@@ -11,13 +11,6 @@ RUN apt-get update \
 # Create a workspace directory (optional; you can change this to suit your project layout)
 WORKDIR /workspace
 
-# Default to non-root user if you prefer (you can also remove these lines 
-# to run as root). Many examples run as root when developing with JetBrains.
-RUN useradd --uid 1000 --gid 1000 --create-home devuser \
-    && chown -R devuser:devuser /workspace
-
-USER devuser
-
 # Expose a commonly-used port (e.g. for running "npm start" or tests)
 EXPOSE 3000
 
