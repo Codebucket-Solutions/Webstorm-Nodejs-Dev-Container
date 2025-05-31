@@ -1,0 +1,49 @@
+{
+  // A human-readable name shown in JetBrains when selecting the Dev Container
+  "name": "Node.js 20 Dev Container",
+
+  // Tell Dev Containers how to build the Dockerfile above
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+
+  // Where to mount your local project inside the container
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+
+  // Run commands as this user; must match the Dockerfile's USER if you created one.
+  "remoteUser": "devuser",
+
+  // Common post-create step: install all dependencies in your Node project
+  "postCreateCommand": "npm install",
+
+  // Forward any ports you expect to use (e.g., your app's default 3000)
+  "forwardPorts": [3000],
+
+  // Dev Containers allow IDE customization: here we tell JetBrains which plugins to install.
+  // Any plugin ID can be found on its JetBrains Marketplace page under "Additional Information → Plugin ID".
+  "customizations": {
+    "jetbrains": {
+      "plugins": [
+        // Git integration (ensures the Git UI in WebStorm works correctly)
+        "Git4Idea",
+
+        // Core Node.js support (WebStorm typically bundles this, but listing it is harmless)
+        "com.intellij.javascript.nodejs",
+
+        // ESLint integration
+        "org.intellij.plugins.eslint",
+
+        // Prettier support (code formatting)
+        "com.intellij.prettierJS",
+
+        // Docker plugin (useful if you want to build/run containers via the IDE)
+        "org.jetbrains.plugins.docker",
+
+        // SonarLint: static code analysis “in real time” as you type
+        "org.sonarlint.idea"
+      ]
+    }
+  }
+}
