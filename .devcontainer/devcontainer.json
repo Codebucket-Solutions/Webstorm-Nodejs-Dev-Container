@@ -3,10 +3,14 @@
   "name": "Node.js 20 Dev Container",
 
   // Tell Dev Containers how to build the Dockerfile above
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": "."
-  },
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+
+  "features": {
+		"ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": "false"
+      }
+	},
 
   // Common post-create step: install all dependencies in your Node project
   "postCreateCommand": "npm install",
