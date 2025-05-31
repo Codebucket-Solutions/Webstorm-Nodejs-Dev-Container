@@ -8,9 +8,6 @@ RUN apt-get update \
        bash \
     && rm -rf /var/lib/apt/lists/*
 
-# Create a workspace directory (optional; you can change this to suit your project layout)
-WORKDIR /workspace
-
 # Expose a commonly-used port (e.g. for running "npm start" or tests)
 EXPOSE 3000
 
